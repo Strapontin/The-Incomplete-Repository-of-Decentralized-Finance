@@ -11,7 +11,7 @@ These applications are intentionally created with flaws, as the purpose of this 
 
 Once you have learned the concepts taught here, I invite you to use audited versions of these implementations if you want to create your own project, such as by using OpenZeppelin's libraries.
 
-
+If you are interested in one kind of contract present in this repository, I invite you to read the implementation to understand how it is made, then read the test to see interaction examples.
 
 
 ## Foundry
