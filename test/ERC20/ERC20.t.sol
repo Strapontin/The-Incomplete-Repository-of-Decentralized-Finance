@@ -4,11 +4,10 @@ pragma solidity ^0.8.20;
 import {Test, console} from "forge-std/Test.sol";
 import {SimpleERC20} from "src/ERC20/ERC20.sol";
 
-
 /**
  * This test suite will use simple low values for tests.
  * Alice and Bob start both with 200 units of token.
- * 
+ *
  * Since decimals are 18 for our tokens, user will need 1e18 units of
  * token to actually own 1 token.
  */
