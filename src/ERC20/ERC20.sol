@@ -9,7 +9,7 @@ import "../Constants.sol";
  * Read the ERC here : https://eips.ethereum.org/EIPS/eip-20
  *
  * These tokens have many uses. The most common use is
- * to represent a user balance.
+ * to represent a user's balance.
  */
 /**
  * Variables
