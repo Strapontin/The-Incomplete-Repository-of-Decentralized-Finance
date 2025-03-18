@@ -39,7 +39,7 @@ contract SimpleERC20 is IERC20 {
     // Since Solidity does not have decimal variables, we use a variable
     //  that counts the decimals needed for our token.
     // The common decimal value used is 18, but some token can use a different value
-    // (USDC uses 6 decimals : https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48#readProxyContract#F11)
+    // (eg: USDC uses 6 decimals : https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48#readProxyContract#F11)
     uint8 public decimals = 18;
 
     // `balances` represent the amount of tokens a user has

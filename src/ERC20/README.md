@@ -4,7 +4,7 @@ An ERC20 is a contract implementing the eip-20 that can be found here : https://
 
 This eip describes a standard interface for tokens. All tokens in a single eip have the same value : they are fungible tokens.
 
-Since the EVM has no variable type to handle float numbers, a ‘decimals‘ variable is used to do so. 
+Since the EVM has no variable type to handle float numbers, a [`decimals`](./ERC20.sol#L43) variable is used to do so. 
 
 ## Creating and Destroying tokens
 
