@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "./interfaces/IERC20.sol";
 import "../Constants.sol";
+
+import {IERC20} from "./interfaces/IERC20.sol";
 
 /**
  * This contract represent an ERC-20 fungible token
@@ -40,7 +41,7 @@ contract SimpleERC20 is IERC20 {
     //  that counts the decimals needed for our token.
     // The common decimal value used is 18, but some token can use a different value
     // (eg: USDC uses 6 decimals : https://etherscan.io/token/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48#readProxyContract#F11)
-    uint8 public decimals = 18;
+    uint8 public immutable decimals = 18;
 
     // `balances` represent the amount of tokens a user has
     mapping(address user => uint256) public balanceOf;
@@ -111,6 +112,13 @@ contract SimpleERC20 is IERC20 {
      * @param value The amount of tokens to create
      */
     function mint(address to, uint256 value) external onlyHelper {
+        _mint(to, value);
+    }
+
+    /**
+     * Internal implementation of `mint`, so it can be used when inherited
+     */
+    function _mint(address to, uint256 value) internal {
         balanceOf[to] += value;
         totalSupply += value;
     }
@@ -121,6 +129,13 @@ contract SimpleERC20 is IERC20 {
      * @param value The amount of tokens to burn
      */
     function burn(address from, uint256 value) external onlyHelper {
+        _burn(from, value);
+    }
+
+    /**
+     * Internal implementation of `burn`, so it can be used when inherited
+     */
+    function _burn(address from, uint256 value) internal {
         balanceOf[from] -= value;
         totalSupply -= value;
     }
