@@ -113,6 +113,6 @@ contract SimpleERC4626 is IERC4626, SimpleERC20 {
         _burn(msg.sender, amount);
 
         // Transfers the assets
-        asset.transfer(msg.sender, amount);
+        asset.transfer(msg.sender, assets);
     }
 }
