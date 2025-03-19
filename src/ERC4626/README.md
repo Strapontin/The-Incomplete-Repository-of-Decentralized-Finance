@@ -9,3 +9,7 @@ This eip describes a standard for tokenized vaults representing shares of an amo
 A vault gives a user shares for depositing an amount of the underlying token. While the ratio shares/underlying may be 1:1 at the beginning, this will change when the vault earns profit, or lose some (this can happen in a slashing where applicable, or if the vault gets hacked).
 
 > If a vault has 200 total tokens to back 100 total shares, then each share is worth 2 tokens.
+
+After understand how vaults work in this code, I suggest you get familiar with the EIP, which is not entirely implemented in this project. You may try to implement what's left if you feel like it would strengthen your understanding of this EIP.
+
+Then, you should find some common vulnerabilities related to vaults, like the infamous Inflation Attack.
