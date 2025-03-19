@@ -3,12 +3,12 @@ pragma solidity ^0.8.20;
 
 interface IERC20 {
     // Variables
-    function name() external returns (string memory);
-    function symbol() external returns (string memory);
-    function decimals() external returns (uint8);
-    function balanceOf(address user) external returns (uint256);
-    function allowance(address user, address allowedUser) external returns (uint256);
-    function totalSupply() external returns (uint256);
+    function name() external view returns (string memory);
+    function symbol() external view returns (string memory);
+    function decimals() external view returns (uint8);
+    function balanceOf(address user) external view returns (uint256);
+    function allowance(address user, address allowedUser) external view returns (uint256);
+    function totalSupply() external view returns (uint256);
 
     // Functions
     function transfer(address to, uint256 value) external;
