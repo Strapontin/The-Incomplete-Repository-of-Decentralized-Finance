@@ -12,4 +12,4 @@ A vault gives a user shares for depositing an amount of the underlying token. Wh
 
 After understand how vaults work in this code, I suggest you get familiar with the EIP, which is not entirely implemented in this project. You may try to implement what's left if you feel like it would strengthen your understanding of this EIP.
 
-Then, you should find some common vulnerabilities related to vaults, like the infamous Inflation Attack.
+Then, you should find some common vulnerabilities related to vaults, like the infamous Inflation Attack : https://docs.openzeppelin.com/contracts/4.x/erc4626#inflation-attack
