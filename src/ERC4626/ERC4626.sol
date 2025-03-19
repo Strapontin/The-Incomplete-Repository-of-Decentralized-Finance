@@ -39,7 +39,10 @@ contract SimpleERC4626 is IERC4626, SimpleERC20 {
      * @param amount Amount of assets to represent in shares
      */
     function convertToShares(uint256 amount) public view returns (uint256) {
-        return amount * totalAssets() / totalShares();
+        // If we don't have shares yet, the ratio is 1:1
+        if (totalShares() == 0) return amount;
+
+        return amount * totalShares() / totalAssets();
     }
 
     /**
@@ -47,7 +50,10 @@ contract SimpleERC4626 is IERC4626, SimpleERC20 {
      * @param amount Amount of shares to represent in assets
      */
     function convertToAssets(uint256 amount) public view returns (uint256) {
-        return amount * totalShares() / totalAssets();
+        // If we don't have assets yet, the ratio is 1:1
+        if (totalAssets() == 0) return amount;
+
+        return amount * totalAssets() / totalShares();
     }
 
     /**
@@ -58,11 +64,11 @@ contract SimpleERC4626 is IERC4626, SimpleERC20 {
         // Calculates shares earned
         shares = convertToShares(amount);
 
-        // Transfer the asset from the caller
-        asset.transferFrom(msg.sender, address(this), amount);
-
         // Creates the shares for the user
         _mint(msg.sender, shares);
+
+        // Transfer the asset from the caller
+        asset.transferFrom(msg.sender, address(this), amount);
     }
 
     /**
@@ -85,7 +91,14 @@ contract SimpleERC4626 is IERC4626, SimpleERC20 {
      * @param amount Amount of shares to mint
      */
     function mintShares(uint256 amount) public returns (uint256 assets) {
-        // TODO
+        // Calculate the amount of assets to deposit
+        assets = convertToAssets(amount);
+
+        // Creates the shares for the user
+        _mint(msg.sender, amount);
+
+        // Transfers the assets
+        asset.transferFrom(msg.sender, address(this), assets);
     }
 
     /**
@@ -93,6 +106,13 @@ contract SimpleERC4626 is IERC4626, SimpleERC20 {
      * @param amount Amount of shares to burn
      */
     function redeem(uint256 amount) public returns (uint256 assets) {
-        // TODO
+        // Calculate the amount of assets to withdraw
+        assets = convertToAssets(amount);
+
+        // Burns the shares from the user
+        _burn(msg.sender, amount);
+
+        // Transfers the assets
+        asset.transfer(msg.sender, amount);
     }
 }
