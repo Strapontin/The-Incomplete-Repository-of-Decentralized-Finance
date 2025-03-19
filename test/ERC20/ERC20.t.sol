@@ -27,7 +27,7 @@ contract ERC20Test is Test {
         bob = makeAddr("bob");
         charlie = makeAddr("charlie");
 
-        // Alice and Bob start with 200 tokens each
+        // Alice and Bob start with 100 tokens each
         vm.startPrank(helper);
         token.mint(alice, 100);
         token.mint(bob, 100);
@@ -102,5 +102,20 @@ contract ERC20Test is Test {
         // Bob can't transfer more tokens
         vm.expectRevert();
         token.transferFrom(alice, bob, 1);
+    }
+
+    function testTotalSupplyChangesCorrectly(uint128 amount) public {
+        vm.startPrank(helper);
+
+        // When we mint, we increase the total supply
+        token.mint(address(this), amount);
+
+        uint256 expectedTotalSupply = uint256(amount) + 200;
+        assertEq(token.totalSupply(), expectedTotalSupply);
+
+        // When we burn, we decrease the total supply
+        token.burn(address(this), amount);
+        assertEq(token.totalSupply(), 200);
+        vm.stopPrank();
     }
 }
